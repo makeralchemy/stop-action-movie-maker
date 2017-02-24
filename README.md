@@ -28,8 +28,9 @@ The stop action movie recorder and player are written for python 2.7.x.
 
 ## Usage Instructions
 
+### stop-action-recorder.py
 
-### Stop Action Movie Recorder
+#### Recorder Command Syntax
 
     $ stop-action-recorder.py -h
 
@@ -53,7 +54,39 @@ The stop action movie recorder and player are written for python 2.7.x.
       -r, --reverseimages   reverses the foreground and background images
 
 
-### Stop Action Movie Player
+#### Recorder Usage Examples
+Record a movie using webcam 0 and store the frames in files with the name *testmovie*.
+
+    $ python stop-action-recorder.py testmovie
+
+Record a movie using webcam 1 and store the frames in files with the name *testmovie*.
+
+    $ python stop-action-recorder.py testmovie -w 1
+
+Record a movie using webcam 0, display grid lines and space them 25 pixels apart. Note: display of grid lines can be turned on or off from the keyboard by pressing the <kbd>g</kbd> key.
+
+    $ python stop-action-recorder.py testmovie -g -s 25
+
+Record a movie using webcam 0 and store the frames in files with the name *testmovie*. When displaying the images make the live frames fainter than and the previous frame.
+
+    $ python stop-action-recorder.py testmovie -r
+
+#### Recorder Messages
+If *stop-action-recorder.py* is unable to open the webcam, it will display the message:
+
+    cannot open webcam    
+
+If *stop-action-recorder.py* is unable to capture the initial frame, it will display the following message and exit.
+
+    unable to read initial webcam image
+
+If *stop-action-recorder.py* is unable to capture a subsequent frame, it will display the following message and exit.
+
+    unable to read webcam image in loop
+
+### stop-action-player.py
+
+#### Player Command Syntax
 
     $ python stop-action-player.py -h
 
@@ -73,7 +106,7 @@ The stop action movie recorder and player are written for python 2.7.x.
       -d, --debug           display debugging messages
 
     
-### Usage Examples
+#### Player Usage Examples
 Record a movie using webcam 0 and store the frames in files with the name *testmovie*.
 
     $ python stop-action-recorder.py testmovie
@@ -102,18 +135,7 @@ Play a movie named *testmovie* and suppress the display of the frame numbers. No
 
     $ python stop-action-player.py testmovie -s
 
-#### Messages
-If *stop-action-recorder.py* is unable to open the webcam, it will display the message:
-
-    cannot open webcam    
-
-If *stop-action-recorder.py* is unable to capture the initial frame, it will display the following message and exit.
-
-    unable to read initial webcam image
-
-If *stop-action-recorder.py* is unable to capture a subsequent frame, it will display the following message and exit.
-
-    unable to read webcam image in loop
+#### Player Messages
 
 If *stop-action-player.py* is unable to open the frame count file, it will display a message like the one below and exit:
 
