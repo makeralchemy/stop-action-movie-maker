@@ -7,12 +7,13 @@ import time
 import argparse
 import os
 
+RBG_GREEN = (0, 255, 0)		# green (red, green, blue)
 FILE_TYPE = '.png'			# images will be saved as .png files
 COUNT_TYPE = '.count'		# file type for the file containing the image count
-TEXT_COLOR = (0, 255, 0)	# frame number text will be green (BLUE, GREEN, RED)
+TEXT_COLOR = RBG_GREEN		# frame number text color
 TEXT_THICKNESS = 1			# frame number text thickness
-TEXT_ORIGIN = (10, 30)		# location to place frame number text
-TEXT_FONT_SCALE = 0.75		# font size for frame number textpress
+TEXT_ORIGIN = (10, 25)		# location to place frame number text
+TEXT_FONT_SCALE = 0.65		# font size for frame number textpress
 DEFAULT_DELAY_MS = 100		# default delay between frames in milliseconds
 ESCAPE_KEY = 27				# ASCII value for the ESC key
 LOWERCASE_F = 102 			# ASCII value for 'f'
@@ -38,6 +39,9 @@ movieName = args.moviename
 timeBetweenFrames = args.timeDelay
 printDebugMessages = args.debugSwitch
 suppressFrameText = args.suppressFrameText
+
+framesPerSecond = 1000.0 / timeBetweenFrames
+print "FPS: ", framesPerSecond
 
 # display the command parameters if debug is turned on
 debug(progName, 'movie name is ' + movieName)
@@ -74,7 +78,8 @@ if os.path.isfile(fn):
 			
 				# add the frame number text to the image and then display the image
 				if not suppressFrameText:
-					cv2.putText(dispImage, sequence, TEXT_ORIGIN, cv2.FONT_HERSHEY_SIMPLEX, TEXT_FONT_SCALE, TEXT_COLOR, TEXT_THICKNESS)
+					frameText = 'FPS: ' + str(framesPerSecond) + ' Frame: ' + sequence
+					cv2.putText(dispImage, frameText, TEXT_ORIGIN, cv2.FONT_HERSHEY_SIMPLEX, TEXT_FONT_SCALE, TEXT_COLOR, TEXT_THICKNESS)
 
 				# display the frame
 				cv2.imshow(movieName, dispImage)

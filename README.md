@@ -22,7 +22,7 @@ The *frame* and *.count* files are stored in the current directory.
 
 ***stop-action-player.py*** uses the files created by *stop-action-recorder.py* to play back the movie. The movie will be played until the <kbd>ESC</kbd> key is pressed. The time between frames can be specified on the command line; the default is 0.1 seconds.
 
-When the movie is played, the frame numbers are displayed in the upper left corner of the screen. The display of the frame numbers can be suppressed using the *-s* or *--suspressframetext* options on the command line. The frame numbers can be toggled on and off by pressing the <kbd>f</kbd> key while the movie is playing.
+When the movie is played, the frame numbers and frames per second (fps) are displayed in the upper left corner of the screen. The display of the frame numbers and fps  can be suppressed using the *-s* or *--suspressframetext* options on the command line. The frame numbers and fps can be toggled on and off by pressing the <kbd>f</kbd> key while the movie is playing.
 
 ***mpeg-maker.py*** uses the files created by *stop-action-recorder.py* to create a .mp4 video.
 
