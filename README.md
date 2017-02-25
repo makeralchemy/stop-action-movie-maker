@@ -179,6 +179,8 @@ Make a .mp4 movie from the *testmovie* frames created by *stop-action-recorder.p
 
 ## Installation Instructions
 
+The *mpeg-maker* python program uses *FFmpeg* to create the mp4 file. Instructions for installing *FFmpeg* can be found [here](https://ffmpeg.org/).
+
 The *stop-action-movie-maker* python programs requires the the OpenCV for Python CV2 library for Python 2 to be installed. 
 
 After installing CV2 for your operating system, change to the directory where you want the *stop-action-movie-maker* files to be installed.
