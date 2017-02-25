@@ -24,7 +24,9 @@ The *frame* and *.count* files are stored in the current directory.
 
 When the movie is played, the frame numbers are displayed in the upper left corner of the screen. The display of the frame numbers can be suppressed using the *-s* or *--suspressframetext* options on the command line. The frame numbers can be toggled on and off by pressing the <kbd>f</kbd> key while the movie is playing.
 
-The stop action movie recorder and player are written for python 2.7.x.
+***mpeg-maker.py*** uses the files created by *stop-action-recorder.py* to create a .mp4 video.
+
+The stop action movie recorder, player, and mpeg maker are written for python 2.7.x.
 
 ## Usage Instructions
 
@@ -144,6 +146,36 @@ If *stop-action-player.py* is unable to open the frame count file, it will displ
 If *stop-action-player.py* is unable to open one of the frame files, it will display a message like the one below and exit:
 
     frame file testmovie.001.png does not exist
+
+### mpeg-maker.py
+
+#### mpeg-maker Command Syntax
+
+    $ python mpeg-maker.py -h
+
+    usage: mpeg-maker.py [-h] [-f FPS] inputfile outputfile
+
+    Stop action mpeg movie maker
+
+    positional arguments:
+      inputfile          input file name
+      outputfile         output file name
+
+    optional arguments:
+      -h, --help         show this help message and exit
+      -f FPS, --fps FPS  frames per second, default is 2 fps
+
+#### mpeg-maker Usage Examples
+
+Make a .mp4 movie from the *testmovie* frames created by *stop-action-recorder.py*, default two frames per second, and save the resulting movie as *finalmovie.mp4*:
+
+    $ python mpeg-maker.py testmovie finalmovie
+
+Make a .mp4 movie from the *testmovie* frames created by *stop-action-recorder.py*, one frame per second, and save the resulting movie as *finalmovie.mp4*:
+
+    $ python mpeg-maker.py testmovie finalmovie -f 1 
+
+#### mpeg-maker Messages
 
 ## Installation Instructions
 
