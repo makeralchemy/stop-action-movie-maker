@@ -8,9 +8,9 @@ The stop action movie recorder and player are two command line python scripts fo
 
 These keys have the following functions:
 
-<kbd>Space</kbd>   Saves a frame
+<kbd>Space</kbd> Saves a frame
 
-<kbd>g</kbd> Turns the display of a grid on or off
+<kbd>G</kbd> or <kbd>g</kbd> Toggles the display of the grid from on to off or visa versa
 
 <kbd>ESC</kbd> Exits the program.
 
