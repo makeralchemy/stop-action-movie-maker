@@ -37,7 +37,7 @@ The stop action movie recorder, player, and mpeg maker are written for python 2.
     $ stop-action-recorder.py -h
 
     usage: stop-action-recorder.py [-h] [-d] [-g] [-s GRIDSPACING]
-                                   [-w WEBCAMNUMBER] [-r]
+                                   [-w WEBCAMNUMBER] [-r] [-a ALPHAVALUE]
                                    moviename
 
     Stop action movie recorder
@@ -50,10 +50,14 @@ The stop action movie recorder, player, and mpeg maker are written for python 2.
       -d, --debug           display debugging messages
       -g, --gridlines       display grid lines
       -s GRIDSPACING, --spacing GRIDSPACING
-                            grid spacing (pixels); default is 15 pixels
+                            grid spacing (pixels)
       -w WEBCAMNUMBER, --webcam WEBCAMNUMBER
                             number of the webcam to use
       -r, --reverseimages   reverses the foreground and background images
+      -a ALPHAVALUE, --alpha ALPHAVALUE
+                            alpha value for the background image
+                            valid values are 0.0 to 1.0
+                            default is 0.65
 
 
 #### Recorder Usage Examples
@@ -72,6 +76,14 @@ Record a movie using webcam 0, display grid lines and space them 25 pixels apart
 Record a movie using webcam 0 and store the frames in files with the name *testmovie*. When displaying the images make the live frames fainter than and the previous frame.
 
     $ python stop-action-recorder.py testmovie -r
+
+Record a movie using webcam 0 and store the frames in files with the name *testmovie* using an alpha value of 0.50 for the background image.
+
+    $ python stop-action-recorder.py testmovie -a 0.50
+
+Record a movie using webcam 0 and store the frames in files with the name *testmovie*. When displaying the images make the live frames fainter than and the previous frame and an alpha value of 0.50
+
+    $ python stop-action-recorder.py testmovie -r -a 0.50
 
 #### Recorder Messages
 If *stop-action-recorder.py* is unable to open the webcam, it will display the message:

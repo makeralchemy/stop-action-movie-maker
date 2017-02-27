@@ -8,6 +8,7 @@
 import cv2
 import time
 import argparse
+import sys
 # import numpy as np
 
 ESCAPE_KEY = 27
@@ -16,7 +17,7 @@ LOWERCASE_C = 99
 LOWERCASE_G = 103
 LOWERCASE_S = 115
 OUTPUT_FILETYPE = ".png"
-ALPHA = 0.65
+DEFAULT_ALPHA = 0.65
 GRID_LINE_COLOR = (50, 50, 50)   
 GRID_LINE_WIDTH = 1
 GRID_SPACING = 15
@@ -34,6 +35,8 @@ parser.add_argument('-g', '--gridlines', dest='gridlinesSwitch', action='store_t
 parser.add_argument('-s', '--spacing', dest='gridSpacing', default=GRID_SPACING, type=int, help='grid spacing (pixels)' )
 parser.add_argument('-w', '--webcam', dest='webcamNumber', default=WEBCAM_0, type=int, help='number of the webcam to use')
 parser.add_argument('-r', '--reverseimages', dest='reverseImagesSwitch', action='store_true', help='reverses the foreground and background images')
+parser.add_argument('-a', '--alpha', dest='alphaValue', default=DEFAULT_ALPHA, type=float, help='alpha value for the background image; default is ' + str(DEFAULT_ALPHA))
+
 args = parser.parse_args()
 
 progName = parser.prog.rsplit( ".", 1 )[ 0 ]
@@ -43,12 +46,18 @@ displayGrid = args.gridlinesSwitch
 reverseImages = args.reverseImagesSwitch
 webcamNumber = args.webcamNumber
 gridSpacing = args.gridSpacing
+alpha = args.alphaValue
 
 debug(progName, 'movie name is ' + outputFilename)
 debug(progName, 'debug is set to ' + str(printDebugMessages))
 debug(progName, 'grid display is initially set to ' + str(displayGrid))
 debug(progName, 'reverse images is set to ' + str(reverseImages))
 debug(progName, 'webcam ' + str(webcamNumber) + ' will be used')
+debug(progName, 'alpha is set to ' + str(alpha))
+
+if (alpha < 0.0) or (alpha > 1.0):
+	print "alpha value not valid: must be in range of 0.0 to 1.0"
+	sys.exit()
 
 file_number = 0		# number of images written to disk
 
@@ -56,7 +65,8 @@ debug(progName, 'opening webcam. file name being used is ' + outputFilename)
 
 cap = cv2.VideoCapture(webcamNumber)
 if not cap.isOpened():
-	raise IOError('cannot open webcam')
+	print "cannot open webcam"
+	sys.exit(0)
 
 debug(progName, 'waiting for webcam to open')
 time.sleep(2)  # wait two seconds for webcam to actually open
@@ -80,10 +90,10 @@ if successfulCapture:
 			# ghost image is the new image
 			if reverseImages:
 				# ghost image will be the new image
-				cv2.addWeighted(prevImage, ALPHA, dispImage, 1 - ALPHA, 0, dispImage)  # add shadow of previous image to display
+				cv2.addWeighted(prevImage, alpha, dispImage, 1 - alpha, 0, dispImage)  # add shadow of previous image to display
 			else:
 				# ghost image will be the previous image
-				cv2.addWeighted(dispImage, ALPHA, prevImage, 1 - ALPHA, 0, dispImage)
+				cv2.addWeighted(dispImage, alpha, prevImage, 1 - alpha, 0, dispImage)
 
 			if displayGrid:
 				for h in range(0, height + 1, gridSpacing):
