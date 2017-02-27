@@ -15,6 +15,7 @@ ESCAPE_KEY = 27
 SPACE_BAR = 32
 LOWERCASE_C = 99
 LOWERCASE_G = 103
+UPPERCASE_G = 71
 LOWERCASE_S = 115
 OUTPUT_FILETYPE = ".png"
 DEFAULT_ALPHA = 0.65
@@ -110,8 +111,8 @@ if successfulCapture:
 				cv2.imwrite(fn, curImage)
 				prevImage = curImage
 				debug(progName, 'image saved as ' + fn)
-			# if 'g' is pressed toggle the grid on or off
-			if c == LOWERCASE_G:
+			# if 'G' or 'g' is pressed toggle the grid on or off
+			if (c == LOWERCASE_G) or (c == UPPERCASE_G):
 				displayGrid = not displayGrid
 				if displayGrid:
 					debug(progName, 'grid lines are now ON')
