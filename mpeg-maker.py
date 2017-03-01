@@ -32,15 +32,13 @@ else:
 	if os.path.isfile(inputFileName + '.001.png'):
 
 		# create the input and output file name parameters for ffmpeg
-		inputParm = ' -i ' + inputFileName + '.%03d.png'
-		outputParm = ' -y ' + outputFileName + '.mp4'
-		fpsParm = ' -r ' + str(fps)
+		inputParm = '-i ' + inputFileName + '.%03d.png'
+		outputParm = '-y ' + outputFileName + '.mp4'
+		fpsParm = '-r ' + str(fps)
 
 		# construct the full ffmpeg command
 
-		ffmpegCommand = 'ffmpeg -f image2' + fpsParm + inputParm + ' -vcodec mpeg4' + outputParm
-
-		# ffmpegCommand = 'ffmpeg -f image2 -r 2 ' + inputParm + '-vcodec mpeg4 ' + outputParm 
+		ffmpegCommand = ' '.join(['ffmpeg', '-f image2', fpsParm, inputParm, '-vcodec mpeg4', outputParm])
 
 		# print the command
 		print ffmpegCommand
