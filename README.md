@@ -102,6 +102,8 @@ If *stop-action-recorder.py* is unable to capture a subsequent frame, it will di
 
 #### Player Command Syntax
 
+    $ python stop-action-player.py -h
+
     usage: stop-action-player.py [-h] [-t TIMEDELAY] [-s] [-d] [-b] moviename
 
     Stop action movie player
@@ -125,7 +127,7 @@ Play a movie named *testmovie* using the default delay between frames of a tenth
 
     $ python stop-action-player.py testmovie
 
-Play a movie named *testmovie* using the default delay between frames of a tenth of a second and play it backwards (opposite order that it was recorded).
+Play a movie named *testmovie* using the default delay between frames of a tenth of a second and play it backwards (frames played in the opposite order that it was recorded).
 
     $ python stop-action-player.py testmovie -b
 
@@ -153,23 +155,29 @@ If *stop-action-player.py* is unable to open one of the frame files, it will dis
 
     $ python mpeg-maker.py -h
 
-    usage: mpeg-maker.py [-h] [-f FPS] inputfile outputfile
+    usage: mpeg-maker.py [-h] [-f FPS] [-s] [-b] inputfile outputfile
 
     Stop action mpeg movie maker
 
     positional arguments:
-      inputfile          input file name
-      outputfile         output file name
+      inputfile            input file name
+      outputfile           output file name
 
     optional arguments:
-      -h, --help         show this help message and exit
-      -f FPS, --fps FPS  frames per second, default is 2 fps
+      -h, --help           show this help message and exit
+      -f FPS, --fps FPS    frames per second, default is 2 fps
+      -s, --silent         if specified, do not display messages
+      -b, --playbackwards  create the movie to play backwards
 
 #### mpeg-maker Usage Examples
 
 Make a .mp4 movie from the *testmovie* frames created by *stop-action-recorder.py*, default two frames per second, and save the resulting movie as *finalmovie.mp4*:
 
     $ python mpeg-maker.py testmovie finalmovie
+
+Make a .mp4 movie from the *testmovie* frames created by *stop-action-recorder.py*, default two frames per second, make it play backwards (frames in the opposite order that they were recorded), and save the resulting movie as *finalmovie.mp4*:
+
+    $ python mpeg-maker.py testmovie finalmovie -b
 
 Make a .mp4 movie from the *testmovie* frames created by *stop-action-recorder.py*, one frame per second, and save the resulting movie as *finalmovie.mp4*:
 
