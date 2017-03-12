@@ -102,9 +102,7 @@ If *stop-action-recorder.py* is unable to capture a subsequent frame, it will di
 
 #### Player Command Syntax
 
-    $ python stop-action-player.py -h
-
-    usage: stop-action-player.py [-h] [-t TIMEDELAY] [-s] [-d] moviename
+    usage: stop-action-player.py [-h] [-t TIMEDELAY] [-s] [-d] [-b] moviename
 
     Stop action movie player
 
@@ -114,32 +112,22 @@ If *stop-action-recorder.py* is unable to capture a subsequent frame, it will di
     optional arguments:
       -h, --help            show this help message and exit
       -t TIMEDELAY, --timebetweenframes TIMEDELAY
-                            time delay between displaying frames (milliseconds)
+                        time delay between displaying frames (milliseconds)
       -s, --suppressframenumbers
-                            suppress display of frame numbers
+                        suppress display of frame numbers
       -d, --debug           display debugging messages
+      -b, --playbackwards   play the movie backwards
 
     
 #### Player Usage Examples
-Record a movie using webcam 0 and store the frames in files with the name *testmovie*.
-
-    $ python stop-action-recorder.py testmovie
-
-Record a movie using webcam 1 and store the frames in files with the name *testmovie*.
-
-    $ python stop-action-recorder.py testmovie -w 1
-
-Record a movie using webcam 0, display grid lines and space them 25 pixels apart. Note: display of grid lines can be turned on or off from the keyboard by pressing the <kbd>g</kbd> key.
-
-    $ python stop-action-recorder.py testmovie -g -s 25
-
-Record a movie using webcam 0 and store the frames in files with the name *testmovie*. When displaying the images make the live frames fainter than and the previous frame.
-
-    $ python stop-action-recorder.py testmovie -r
 
 Play a movie named *testmovie* using the default delay between frames of a tenth of a second.
 
     $ python stop-action-player.py testmovie
+
+Play a movie named *testmovie* using the default delay between frames of a tenth of a second and play it backwards (opposite order that it was recorded).
+
+    $ python stop-action-player.py testmovie -b
 
 Play a movie named *testmovie* with a delay between frames of half a second (500 milliseconds).
 

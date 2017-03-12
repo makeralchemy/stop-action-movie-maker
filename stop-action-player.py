@@ -18,6 +18,8 @@ DEFAULT_DELAY_MS = 100		# default delay between frames in milliseconds
 ESCAPE_KEY = 27				# ASCII value for the ESC key
 LOWERCASE_F = 102 			# ASCII value for 'f'
 READ_ONLY = 'r'				# read only parameter for opening files
+BACKWARDS = 'backwards'     # text to use in messages about playback sequence
+FORWARDS = 'forwards'		# text to use in messages about playback sequence
 
 # print debugging messages prefixed by the name of the program
 def debug(programName, displayText):
@@ -31,6 +33,7 @@ parser.add_argument('moviename',  help='file name of the stop action movie')
 parser.add_argument('-t', '--timebetweenframes', dest='timeDelay', default=DEFAULT_DELAY_MS, type=int, help='time delay between displaying frames (milliseconds)')
 parser.add_argument('-s', '--suppressframenumbers', dest='suppressFrameText', action='store_true', help='suppress display of frame numbers')
 parser.add_argument('-d', '--debug', dest='debugSwitch', action='store_true', help='display debugging messages')
+parser.add_argument('-b', '--playbackwards', dest='playBackwards', action='store_true', help='play the movie backwards')
 args = parser.parse_args()
 
 # save the values from the command parser
@@ -39,6 +42,9 @@ movieName = args.moviename
 timeBetweenFrames = args.timeDelay
 printDebugMessages = args.debugSwitch
 suppressFrameText = args.suppressFrameText
+playBackwards = args.playBackwards
+
+playSetting = BACKWARDS if playBackwards else FORWARDS
 
 framesPerSecond = 1000.0 / timeBetweenFrames
 print "FPS: ", framesPerSecond
@@ -47,6 +53,7 @@ print "FPS: ", framesPerSecond
 debug(progName, 'movie name is ' + movieName)
 debug(progName, 'time delay between frame is ' + str(timeBetweenFrames))
 debug(progName, 'debug is set to ' + str(printDebugMessages))
+debug(progName, 'movie will be played ' + playSetting)
 
 # construct the file name for file containing the count of images in the movie
 fn = movieName + COUNT_TYPE
@@ -66,8 +73,15 @@ if os.path.isfile(fn):
 	# loop reading and displaying all the frames until the ESC key is pressed
 	keep_playing = True
 	while keep_playing:										# play the movie until the user presses the escape key
-		for i in range(count):								# loop through all the image files
-			sequence = str(i+1).zfill(3)					# construct the image number used in the file name
+
+		if playBackwards:						
+			playSequence = range(count, 0, -1)							# play frames backwards
+		else:
+			playSequence = range(1, count + 1, 1)						# play frames forwards
+		debug(progName, 'frame play sequence: ' + str(playSequence))
+
+		for i in playSequence:								# loop through all the image files
+			sequence = str(i).zfill(3)						# construct the image number used in the file name
 			fn = movieName + "." + sequence + FILE_TYPE		# construct the file name
 			debug(progName, 'displaying ' + fn)
 
