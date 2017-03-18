@@ -20,6 +20,8 @@ LOWERCASE_F = 102 			# ASCII value for 'f'
 READ_ONLY = 'r'				# read only parameter for opening files
 BACKWARDS = 'backwards'     # text to use in messages about playback sequence
 FORWARDS = 'forwards'		# text to use in messages about playback sequence
+FIRST_FRAME_REPEAT = 1 		# number of times to repeat the first frame on playback
+FIRST_FRAME = 1
 
 # print debugging messages prefixed by the name of the program
 def debug(programName, displayText):
@@ -34,6 +36,7 @@ parser.add_argument('-t', '--timebetweenframes', dest='timeDelay', default=DEFAU
 parser.add_argument('-s', '--suppressframenumbers', dest='suppressFrameText', action='store_true', help='suppress display of frame numbers')
 parser.add_argument('-d', '--debug', dest='debugSwitch', action='store_true', help='display debugging messages')
 parser.add_argument('-b', '--playbackwards', dest='playBackwards', action='store_true', help='play the movie backwards')
+parser.add_argument('-1', '--firstframerepeat', dest='firstFrameRepeat', default=FIRST_FRAME_REPEAT, type=int, help='number of times to repeat the first frame on playback')
 args = parser.parse_args()
 
 # save the values from the command parser
@@ -43,6 +46,7 @@ timeBetweenFrames = args.timeDelay
 printDebugMessages = args.debugSwitch
 suppressFrameText = args.suppressFrameText
 playBackwards = args.playBackwards
+firstFrameRepeat = args.firstFrameRepeat
 
 playSetting = BACKWARDS if playBackwards else FORWARDS
 
@@ -95,11 +99,16 @@ if os.path.isfile(fn):
 					frameText = 'FPS: ' + str(framesPerSecond) + ' Frame: ' + sequence
 					cv2.putText(dispImage, frameText, TEXT_ORIGIN, cv2.FONT_HERSHEY_SIMPLEX, TEXT_FONT_SCALE, TEXT_COLOR, TEXT_THICKNESS)
 
-				# display the frame
-				cv2.imshow(movieName, dispImage)
+				if i == FIRST_FRAME:
+					for r in range(0, firstFrameRepeat):
+						cv2.imshow(movieName, dispImage)
+						c = cv2.waitKey(timeBetweenFrames)
+				else:
+					# display the frame
+					cv2.imshow(movieName, dispImage)
 
-				# wait for the specified time between frames and then check the keyboard
-				c = cv2.waitKey(timeBetweenFrames)
+					# wait for the specified time between frames and then check the keyboard
+					c = cv2.waitKey(timeBetweenFrames)
 
 				# if lower case f is pressed, toggle the display of the frame numbers
 				if c == LOWERCASE_F:

@@ -104,7 +104,9 @@ If *stop-action-recorder.py* is unable to capture a subsequent frame, it will di
 
     $ python stop-action-player.py -h
 
-    usage: stop-action-player.py [-h] [-t TIMEDELAY] [-s] [-d] [-b] moviename
+    usage: stop-action-player.py [-h] [-t TIMEDELAY] [-s] [-d] [-b]
+                                 [-1 FIRSTFRAMEREPEAT]
+                                 moviename
 
     Stop action movie player
 
@@ -114,11 +116,13 @@ If *stop-action-recorder.py* is unable to capture a subsequent frame, it will di
     optional arguments:
       -h, --help            show this help message and exit
       -t TIMEDELAY, --timebetweenframes TIMEDELAY
-                        time delay between displaying frames (milliseconds)
-      -s, --suppressframenumbers
-                        suppress display of frame numbers
-      -d, --debug           display debugging messages
-      -b, --playbackwards   play the movie backwards
+                            time delay between displaying frames (milliseconds)
+       -s, --suppressframenumbers
+                            suppress display of frame numbers
+       -d, --debug           display debugging messages
+       -b, --playbackwards   play the movie backwards
+       -1 FIRSTFRAMEREPEAT, --firstframerepeat FIRSTFRAMEREPEAT
+                            number of times to repeat the first frame on playback
 
     
 #### Player Usage Examples
@@ -130,6 +134,10 @@ Play a movie named *testmovie* using the default delay between frames of a tenth
 Play a movie named *testmovie* using the default delay between frames of a tenth of a second and play it backwards (frames played in the opposite order that it was recorded).
 
     $ python stop-action-player.py testmovie -b
+
+Play a movie named *testmovie* using the default delay between frames of a tenth of a second and play frame 001 ten times (this allows the first frame to be visible longer which is good for the beginning or end of the movie if -b is also specified. 
+
+    $ python stop-action-player.py testmovie -1 10
 
 Play a movie named *testmovie* with a delay between frames of half a second (500 milliseconds).
 
