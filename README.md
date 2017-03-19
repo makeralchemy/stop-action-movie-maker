@@ -28,6 +28,10 @@ When the movie is played, the frame numbers and frames per second (fps) are disp
 
 ***delete-frame-set.py*** will delete all the files associated with a movie created by *stop-action-recorder.py*.
 
+***repeat-first-frame.py*** will add extra first frames to the beginning of the movie. This makes the first frame display longer when playing the movie with *stop-action-player.py* or when making a mp4 with *make-mpeg.py*.
+
+***repeat-last-frame.py*** will add extra last frames to the end of the movie. This makes the last frame display longer when playing the movie with *stop-action-player.py* or when making a mp4 with *make-mpeg.py*.
+
 The stop action movie recorder, player, and the mpeg maker are written for python 2.7.x.
 
 ## Usage Instructions
@@ -106,8 +110,8 @@ If *stop-action-recorder.py* is unable to capture a subsequent frame, it will di
 
     $ python stop-action-player.py -h
 
-    usage: stop-action-player.py [-h] [-t TIMEDELAY] [-s] [-d] [-b]
-                                 [-1 FIRSTFRAMEREPEAT]
+    usage: stop-action-player.py [-h] [-f FRAMESPERSECOND] [-s] [-d] [-b]
+                                 [-a FIRSTFRAMEREPEAT] [-z LASTFRAMEREPEAT]
                                  moviename
 
     Stop action movie player
@@ -117,33 +121,39 @@ If *stop-action-recorder.py* is unable to capture a subsequent frame, it will di
 
     optional arguments:
       -h, --help            show this help message and exit
-      -t TIMEDELAY, --timebetweenframes TIMEDELAY
-                            time delay between displaying frames (milliseconds)
-       -s, --suppressframenumbers
+      -f FRAMESPERSECOND, --FPS FRAMESPERSECOND
+                            frames per second
+      -s, --suppressframenumbers
                             suppress display of frame numbers
-       -d, --debug           display debugging messages
-       -b, --playbackwards   play the movie backwards
-       -1 FIRSTFRAMEREPEAT, --firstframerepeat FIRSTFRAMEREPEAT
+      -d, --debug           display debugging messages
+      -b, --playbackwards   play the movie backwards
+      -a FIRSTFRAMEREPEAT, --firstframerepeat FIRSTFRAMEREPEAT
                             number of times to repeat the first frame on playback
+      -z LASTFRAMEREPEAT, --lastframerepeat LASTFRAMEREPEAT
+                            number of times to repeat the last frame on playback
 
     
 #### Player Usage Examples
 
-Play a movie named *testmovie* using the default delay between frames of a tenth of a second.
+Play a movie named *testmovie* using the default of tens frames per second.
 
     $ python stop-action-player.py testmovie
 
-Play a movie named *testmovie* using the default delay between frames of a tenth of a second and play it backwards (frames played in the opposite order that it was recorded).
+Play a movie named *testmovie* using the default of tens frames per second and play it backwards (frames played in the opposite order that it was recorded).
 
     $ python stop-action-player.py testmovie -b
 
-Play a movie named *testmovie* using the default delay between frames of a tenth of a second and play frame 001 ten times (this allows the first frame to be visible longer which is good for the beginning or end of the movie if -b is also specified. 
+Play a movie named *testmovie* using the default of ten frames per second and play frame 001 ten times (this allows the first frame to be visible longer which is good for the beginning or end of the movie if -b is also specified. 
 
-    $ python stop-action-player.py testmovie -1 10
+    $ python stop-action-player.py testmovie -a 10
 
-Play a movie named *testmovie* with a delay between frames of half a second (500 milliseconds).
+Play a movie named *testmovie* using the default of ten frames per second and play the last frame twenty times (this allows the first frame to be visible longer which is good for the beginning or end of the movie if -b is also specified. 
 
-    $ python stop-action-player.py testmovie -t 500
+    $ python stop-action-player.py testmovie -z 20
+
+Play a movie named *testmovie* at 20 frames per second.
+
+    $ python stop-action-player.py testmovie -f 20
 
 Play a movie named *testmovie* and suppress the display of the frame numbers. Note: the display of frame numbers can be toggled on and off by pressing the <kbd>f</kbd> key while the movie is playing.
 
@@ -158,6 +168,14 @@ If *stop-action-player.py* is unable to open the frame count file, it will displ
 If *stop-action-player.py* is unable to open one of the frame files, it will display a message like the one below and exit:
 
     frame file testmovie.001.png does not exist
+
+If frames per second are specified as a negative number or zero, the following message will be displayed and the program will exit:
+
+    frames per second must be one or higher
+
+If the movie has too few frames, the following message will be displayed and the program will exit:
+
+    movie must contain at least two frames
 
 ### make-mpeg.py
 
@@ -253,6 +271,134 @@ If the frame count file for the movie is not found, *delete-frame-set.py* will d
 If a frame file associated with the stop action movie can not be found, a message like the one below will be displayed and the execution will be stopped.  
 
     testmovie.026.png does not exist
+
+
+### repeat-first-frame.py
+
+#### repeat-first-frame Command Syntax
+
+    $ python repeat-first-frame.py -h
+
+    usage: repeat-first-frame.py [-h] [-r FIRSTFRAMEREPEAT] [-d]
+                                 inputmoviename outputmoviename
+
+    Create frame set with repeated first frame
+
+    positional arguments:
+      inputmoviename        file name of the input stop action movie
+      outputmoviename       file name of the output stop action movie
+
+    optional arguments:
+      -h, --help            show this help message and exit
+      -r FIRSTFRAMEREPEAT, --firstframerepeat FIRSTFRAMEREPEAT
+                            number of times to repeat the first frame on playback
+      -d, --debug           display debugging messages
+
+#### repeat-first-frame Usage Examples
+
+Create a new version of the stop action *testmovie* movie called *newmovie* with the first frame repeated 40 times (at 10 frames per second this would be 4 seconds, at 20 frames per second this we be 2 seconds). 
+
+    $ python repeat-first-frame.py testmovie newmovie -r 40
+
+#### repeat-first-frame Messages
+
+If a frame file associated with the stop action movie can not be found, a message like the one below will be displayed and the execution will be stopped.  
+
+    input frame file testmovie does not exist: processing stopping
+
+If the frame count file for the movie is not found, *repeat-first-frame.py* will display a message like the one below and exit:
+
+    can not open input frame count file testmovie
+
+If the number of times to repeat the first frame is negative or zero, *repeat-first-frame.py* will display the following message and exit:
+
+    first frame repeat must be greater than zero
+
+Each time a frame is copied, a message like the one below will be displayed:
+
+    copying testmovie.012.png to newmovie.032.png
+
+After all the new movie is created, a message like the following will be displayed:
+
+    new frame set newmovie with first frame repeated 20 times successfully created
+
+### repeat-last-frame.py
+
+#### repeat-last-frame Command Syntax
+
+    $ python repeat-last-frame.py -h
+
+    usage: repeat-last-frame.py [-h] [-r LASTFRAMEREPEAT] [-d]
+                                inputmoviename outputmoviename
+
+    Create frame set with the last frame repeated
+
+    positional arguments:
+      inputmoviename        file name of the input stop action movie
+      outputmoviename       file name of the output stop action movie
+
+    optional arguments:
+      -h, --help            show this help message and exit
+      -r LASTFRAMEREPEAT, --lastframerepeat LASTFRAMEREPEAT
+                            number of times to repeat the last frame
+      -d, --debug           display debugging messages
+
+#### repeat-last-frame Usage Examples
+
+Create a new version of the stop action *testmovie* movie called *newmovie* with the last frame repeated 40 times (at 10 frames per second this would be 4 seconds, at 20 frames per second this we be 2 seconds). 
+
+    $ python repeat-last-frame.py testmovie newmovie -r 40
+
+#### repeat-last-frame Messages
+
+If a frame file associated with the stop action movie can not be found, a message like the one below will be displayed and the execution will be stopped.  
+
+    input frame file testmovie does not exist: processing stopping
+
+If the frame count file for the movie is not found, *repeat-last-frame.py* will display a message like the one below and exit:
+
+    can not open input frame count file testmovie
+
+If the number of times to repeat the first frame is negative or zero, *repeat-last-frame.py* will display the following message and exit:
+
+    last frame repeat must be greater than zero
+
+Each time a frame is copied, a message like the one below will be displayed:
+
+    copying testmovie.012.png to newmovie.032.png
+
+After all the new movie is created, a message like the following will be displayed:
+
+    new frame set newmovie with last frame repeated 20 times successfully created
+
+## Making a Stop Action Movie
+
+Create a 20 frame per second stop action movie called *testmovie* with the first frame repeated for one second and the last frame repeated for 5 seconds:
+
+Record the movie:
+
+    $ python stop-action-recorder.py testmovie
+
+Preview the movie:
+
+    $ python stop-action-player.py testmovie -t XXX -a 20 -z 100
+
+Create a new temporary movie with the first frame repeated 20 times:
+
+    $ python repeat-first-frame.py testmovie tempmovie1 -r 20
+
+Create a new temporary movie with the last frame repeated 100 times:
+
+    $ python repeat-last-frame.py tempmovie1 tempmovie2 -r 100
+
+Create a MP4 file with the movie:
+
+    $ python make-mpeg.py tempmovie2 testmovie -f 20
+
+Delete the files associated with the two temporary files:
+
+    $ python delete-frame-set.py tempmovie1
+    $ python delete-frame-set.py tempmovie2
 
 ## Installation Instructions
 
