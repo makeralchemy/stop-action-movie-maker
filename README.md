@@ -228,7 +228,7 @@ Delete all of the files associated with a stop action movie created by *stop-act
 
     $ python delete-frame-set.py testmovie
 
-Delete all of the files associated with a stop action movie created by *stop-action-recorder.py* for a movie called *testmovie*.  *delete-frame-set.py* will not ask for confirmation to delete the files.  Use the '-x' or '--deletewithoutconfirmation' arguments with caution.
+Delete all of the files associated with a stop action movie created by *stop-action-recorder.py* for a movie called *testmovie*.  A command argument is used with *delete-frame-set.py* to not ask for confirmation to delete the files.  Use the '-x' or '--deletewithoutconfirmation' arguments with caution.
 
     $ python delete-frame-set.py testmovie -x
 
@@ -242,11 +242,11 @@ If any response other than *YES* is typed, the files will not be deleted and the
 
     files will not be deleted 
 
-If *YES* was typed or the *-x* or *--deletewithoutconfirmation* command line arguments were specified, a message like the one below will be displayed:
+If *YES* was typed or the *-x* or *--deletewithoutconfirmation* command line arguments were specified, a message like the one below will be displayed after the files have been deleted:
 
     frame set testmovie deleted 
 
-If the frame count file for the movie is not found *delete-frame-set.py* will display a message like the one below and exit:
+If the frame count file for the movie is not found, *delete-frame-set.py* will display a message like the one below and exit:
 
     can not open target frame count file testmovie
 
