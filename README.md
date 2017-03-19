@@ -24,9 +24,9 @@ The *frame* and *.count* files are stored in the current directory.
 
 When the movie is played, the frame numbers and frames per second (fps) are displayed in the upper left corner of the screen. The display of the frame numbers and fps  can be suppressed using the *-s* or *--suspressframetext* options on the command line. The frame numbers and fps can be toggled on and off by pressing the <kbd>f</kbd> key while the movie is playing.
 
-***mpeg-maker.py*** uses the files created by *stop-action-recorder.py* to create a .mp4 video.
+***make-mpeg.py*** uses the files created by *stop-action-recorder.py* to create a .mp4 video.
 
-The stop action movie recorder, player, and mpeg maker are written for python 2.7.x.
+The stop action movie recorder, player, and the mpeg maker are written for python 2.7.x.
 
 ## Usage Instructions
 
@@ -157,13 +157,13 @@ If *stop-action-player.py* is unable to open one of the frame files, it will dis
 
     frame file testmovie.001.png does not exist
 
-### mpeg-maker.py
+### make-mpeg.py
 
-#### mpeg-maker Command Syntax
+#### make-mpeg Command Syntax
 
-    $ python mpeg-maker.py -h
+    $ python make-mpeg.py -h
 
-    usage: mpeg-maker.py [-h] [-f FPS] [-s] [-b] inputfile outputfile
+    usage: make-mpeg.py [-h] [-f FPS] [-s] [-b] inputfile outputfile
 
     Stop action mpeg movie maker
 
@@ -177,25 +177,25 @@ If *stop-action-player.py* is unable to open one of the frame files, it will dis
       -s, --silent         if specified, do not display messages
       -b, --playbackwards  create the movie to play backwards
 
-#### mpeg-maker Usage Examples
+#### make-mpeg Usage Examples
 
 Make a .mp4 movie from the *testmovie* frames created by *stop-action-recorder.py*, default two frames per second, and save the resulting movie as *finalmovie.mp4*:
 
-    $ python mpeg-maker.py testmovie finalmovie
+    $ python make-mpeg.py testmovie finalmovie
 
 Make a .mp4 movie from the *testmovie* frames created by *stop-action-recorder.py*, default two frames per second, make it play backwards (frames in the opposite order that they were recorded), and save the resulting movie as *finalmovie.mp4*:
 
-    $ python mpeg-maker.py testmovie finalmovie -b
+    $ python make-mpeg.py testmovie finalmovie -b
 
 Make a .mp4 movie from the *testmovie* frames created by *stop-action-recorder.py*, one frame per second, and save the resulting movie as *finalmovie.mp4*:
 
-    $ python mpeg-maker.py testmovie finalmovie -f 1 
+    $ python make-mpeg.py testmovie finalmovie -f 1 
 
-#### mpeg-maker Messages
+#### make-mpeg Messages
 
 ## Installation Instructions
 
-The *mpeg-maker* python program uses *FFmpeg* to create the mp4 file. Instructions for installing *FFmpeg* can be found [here](https://ffmpeg.org/).
+The *make-mpeg* python program uses *FFmpeg* to create the mp4 file. Instructions for installing *FFmpeg* can be found [here](https://ffmpeg.org/).
 
 The *stop-action-movie-maker* python programs requires the the OpenCV for Python  library for Python 2 to be installed. Installing OpenCV on MacOS can be tricky, good instructions can be found [here](https://jjyap.wordpress.com/2014/05/24/installing-opencv-2-4-9-on-mac-osx-with-python-support/).
 
