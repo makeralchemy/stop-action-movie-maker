@@ -26,6 +26,8 @@ When the movie is played, the frame numbers and frames per second (fps) are disp
 
 ***make-mpeg.py*** uses the files created by *stop-action-recorder.py* to create a .mp4 video.
 
+***delete-frame-set.py*** will delete all the files associated with a movie created by *stop-action-recorder.py*.
+
 The stop action movie recorder, player, and the mpeg maker are written for python 2.7.x.
 
 ## Usage Instructions
@@ -192,6 +194,65 @@ Make a .mp4 movie from the *testmovie* frames created by *stop-action-recorder.p
     $ python make-mpeg.py testmovie finalmovie -f 1 
 
 #### make-mpeg Messages
+
+If the number frames per second specified is negative or zero, *make-mpeg.py* will display a message like the one below and exit:
+
+    frames per second must be greater than zero
+
+If *make-mpeg.py* is unable to open the first frame file, it will display a message like the one below and exit:
+
+    input file testmovie.001.png does not exist
+
+### delete-frame-set.py
+
+#### delete-frame-set Command Syntax
+
+    $ python delete-frame-set.py -h
+
+    usage: delete-frame-set.py [-h] [-x] [-d] targetmoviename
+
+    Delete frame set
+
+    positional arguments:
+       targetmoviename       file name of the stop action movie frame set to delete
+
+    optional arguments:
+      -h, --help            show this help message and exit
+      -x, --deletewithoutconfirmation
+                            delete without asking for confirmation
+      -d, --debug           display debugging messages
+
+#### delete-frame-set Usage Examples
+
+Delete all of the files associated with a stop action movie created by *stop-action-recorder.py* for a movie called *testmovie*.  Note *delete-frame-set.py* will not delete any files created by *make-mpeg*.  *delete-frame-set.py* will ask for confirmation to delete the files.
+
+    $ python delete-frame-set.py testmovie
+
+Delete all of the files associated with a stop action movie created by *stop-action-recorder.py* for a movie called *testmovie*.  *delete-frame-set.py* will not ask for confirmation to delete the files.  Use the '-x' or '--deletewithoutconfirmation' arguments with caution.
+
+    $ python delete-frame-set.py testmovie -x
+
+#### delete-frame-set Messages
+
+*delete-frame-set.py* will ask for confirmation to delete the files associated with the movie using a message that looks like this:
+
+    delete frame files for testmovie? Type YES to confirm: 
+
+If any response other than *YES* is typed, the files will not be deleted and the message below will be displayed:
+
+    files will not be deleted 
+
+If *YES* was typed or the *-x* or *--deletewithoutconfirmation* command line arguments were specified, a message like the one below will be displayed:
+
+    frame set testmovie deleted 
+
+If the frame count file for the movie is not found *delete-frame-set.py* will display a message like the one below and exit:
+
+    can not open target frame count file testmovie
+
+If a frame file associated with the stop action movie can not be found, a message like the one below will be displayed and the execution will be stopped.  
+
+    testmovie.026.png does not exist
 
 ## Installation Instructions
 
