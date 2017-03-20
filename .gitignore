@@ -1,0 +1,9 @@
+# image files
+*.png
+*.jpg
+
+# movie files
+*.mp4
+
+# stop action movie maker count files
+*.count
