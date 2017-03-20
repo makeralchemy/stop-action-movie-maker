@@ -82,6 +82,7 @@ if os.path.isfile(fn):
 	count = int(f.read())
 	debug(progName, 'frame count is ' + str(count))
 
+	# make sure the movie has at least two frames
 	if count < 2:
 		print "movie must contain at least two frames"
 		sys.exit()
