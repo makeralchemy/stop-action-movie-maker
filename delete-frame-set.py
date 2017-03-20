@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 # creates a new set of frame files and .count file with the first frame repeated the specified number of times
 
 import sys
@@ -13,7 +15,6 @@ READ_ONLY = 'r'				# open files in read only mode
 SUCCESS_CODE = 0			# successful processing
 CMD_ERROR_CODE = 1			# error with command parameters
 DFS_ERROR_CODE = 2			# error occurred in deleteframeset
-
 
 # print debugging messages prefixed by the name of the program
 def debug(programName, displayText):
@@ -63,7 +64,7 @@ def deleteFrameSet(targetMovieName):
 	debug(progName, "deleting " + targetCountFileName)
 	os.remove(targetCountFileName)
 
-	successMessage = 'frame set' + targetMovieName + ' deleted'
+	successMessage = 'frame set ' + targetMovieName + ' deleted'
 	return SUCCESS_CODE, successMessage
 
 ##############################################################################################################################################
