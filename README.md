@@ -26,7 +26,7 @@ When the movie is played, the frame numbers and frames per second (fps) are disp
 
 ***make_mpeg.py*** uses the files created by *stop-action-recorder.py* to create a .mp4 video.
 
-***delete-frame-set.py*** will delete all the files associated with a movie created by *stop-action-recorder.py*.
+***delete_frame_set.py*** will delete all the files associated with a movie created by *stop-action-recorder.py*.
 
 ***repeat-first-frame.py*** will add extra first frames to the beginning of the movie. This makes the first frame display longer when playing the movie with *stop-action-player.py* or when making a mp4 with *make_mpeg.py*.
 
@@ -221,18 +221,18 @@ If *make_mpeg.py* is unable to open the first frame file, it will display a mess
 
     input file testmovie.001.png does not exist
 
-### delete-frame-set.py
+### delete_frame_set.py
 
-#### delete-frame-set Command Syntax
+#### delete_frame_set Command Syntax
 
-    $ python delete-frame-set.py -h
+    $ python delete_frame_set.py -h
 
-    usage: delete-frame-set.py [-h] [-x] [-d] targetmoviename
+    usage: delete_frame_set.py [-h] [-x] [-d] targetmoviename
 
     Delete frame set
 
     positional arguments:
-       targetmoviename       file name of the stop action movie frame set to delete
+       targetmoviename       name of the stop action movie frame set to delete
 
     optional arguments:
       -h, --help            show this help message and exit
@@ -240,19 +240,19 @@ If *make_mpeg.py* is unable to open the first frame file, it will display a mess
                             delete without asking for confirmation
       -d, --debug           display debugging messages
 
-#### delete-frame-set Usage Examples
+#### delete_frame_set Usage Examples
 
-Delete all of the files associated with a stop action movie created by *stop-action-recorder.py* for a movie called *testmovie*.  Note *delete-frame-set.py* will not delete any files created by *make_mpeg*.  *delete-frame-set.py* will ask for confirmation to delete the files.
+Delete all of the files associated with a stop action movie created by *stop-action-recorder.py* for a movie called *testmovie*.  Note *delete_frame_set.py* will not delete any files created by *make_mpeg*.  *delete_frame_set.py* will ask for confirmation to delete the files.
 
-    $ python delete-frame-set.py testmovie
+    $ python delete_frame_set.py testmovie
 
-Delete all of the files associated with a stop action movie created by *stop-action-recorder.py* for a movie called *testmovie*.  A command argument is used with *delete-frame-set.py* to not ask for confirmation to delete the files.  Use the '-x' or '--deletewithoutconfirmation' arguments with caution.
+Delete all of the files associated with a stop action movie created by *stop-action-recorder.py* for a movie called *testmovie*.  A command argument is used with *delete_frame_set.py* to not ask for confirmation to delete the files.  Use the '-x' or '--deletewithoutconfirmation' arguments with caution.
 
-    $ python delete-frame-set.py testmovie -x
+    $ python delete_frame_set.py testmovie -x
 
-#### delete-frame-set Messages
+#### delete_frame_set Messages
 
-*delete-frame-set.py* will ask for confirmation to delete the files associated with the movie using a message that looks like this:
+*delete_frame_set.py* will ask for confirmation to delete the files associated with the movie using a message that looks like this:
 
     delete frame files for testmovie? Type YES to confirm: 
 
@@ -264,7 +264,7 @@ If *YES* was typed or the *-x* or *--deletewithoutconfirmation* command line arg
 
     frame set testmovie deleted 
 
-If the frame count file for the movie is not found, *delete-frame-set.py* will display a message like the one below and exit:
+If the frame count file for the movie is not found, *delete_frame_set.py* will display a message like the one below and exit:
 
     can not open target frame count file testmovie
 
@@ -397,8 +397,8 @@ Create a MP4 file with the movie:
 
 Delete the files associated with the two temporary files:
 
-    $ python delete-frame-set.py tempmovie1
-    $ python delete-frame-set.py tempmovie2
+    $ python delete_frame_set.py tempmovie1
+    $ python delete_frame_set.py tempmovie2
 
 ## Installation Instructions
 
