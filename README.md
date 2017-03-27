@@ -24,13 +24,13 @@ The *frame* and *.count* files are stored in the current directory.
 
 When the movie is played, the frame numbers and frames per second (fps) are displayed in the upper left corner of the screen. The display of the frame numbers and fps  can be suppressed using the *-s* or *--suspressframetext* options on the command line. The frame numbers and fps can be toggled on and off by pressing the <kbd>f</kbd> key while the movie is playing.
 
-***make-mpeg.py*** uses the files created by *stop-action-recorder.py* to create a .mp4 video.
+***make_mpeg.py*** uses the files created by *stop-action-recorder.py* to create a .mp4 video.
 
 ***delete-frame-set.py*** will delete all the files associated with a movie created by *stop-action-recorder.py*.
 
-***repeat-first-frame.py*** will add extra first frames to the beginning of the movie. This makes the first frame display longer when playing the movie with *stop-action-player.py* or when making a mp4 with *make-mpeg.py*.
+***repeat-first-frame.py*** will add extra first frames to the beginning of the movie. This makes the first frame display longer when playing the movie with *stop-action-player.py* or when making a mp4 with *make_mpeg.py*.
 
-***repeat-last-frame.py*** will add extra last frames to the end of the movie. This makes the last frame display longer when playing the movie with *stop-action-player.py* or when making a mp4 with *make-mpeg.py*.
+***repeat-last-frame.py*** will add extra last frames to the end of the movie. This makes the last frame display longer when playing the movie with *stop-action-player.py* or when making a mp4 with *make_mpeg.py*.
 
 The stop action movie recorder, player, and the mpeg maker are written for python 2.7.x.
 
@@ -177,13 +177,13 @@ If the movie has too few frames, the following message will be displayed and the
 
     movie must contain at least two frames
 
-### make-mpeg.py
+### make_mpeg.py
 
-#### make-mpeg Command Syntax
+#### make_mpeg Command Syntax
 
-    $ python make-mpeg.py -h
+    $ python make_mpeg.py -h
 
-    usage: make-mpeg.py [-h] [-f FPS] [-s] [-b] inputfile outputfile
+    usage: make_mpeg.py [-h] [-f FPS] [-s] [-b] inputfile outputfile
 
     Stop action mpeg movie maker
 
@@ -197,27 +197,27 @@ If the movie has too few frames, the following message will be displayed and the
       -s, --silent         if specified, do not display messages
       -b, --playbackwards  create the movie to play backwards
 
-#### make-mpeg Usage Examples
+#### make_mpeg Usage Examples
 
 Make a .mp4 movie from the *testmovie* frames created by *stop-action-recorder.py*, default two frames per second, and save the resulting movie as *finalmovie.mp4*:
 
-    $ python make-mpeg.py testmovie finalmovie
+    $ python make_mpeg.py testmovie finalmovie
 
 Make a .mp4 movie from the *testmovie* frames created by *stop-action-recorder.py*, default two frames per second, make it play backwards (frames in the opposite order that they were recorded), and save the resulting movie as *finalmovie.mp4*:
 
-    $ python make-mpeg.py testmovie finalmovie -b
+    $ python make_mpeg.py testmovie finalmovie -b
 
 Make a .mp4 movie from the *testmovie* frames created by *stop-action-recorder.py*, one frame per second, and save the resulting movie as *finalmovie.mp4*:
 
-    $ python make-mpeg.py testmovie finalmovie -f 1 
+    $ python make_mpeg.py testmovie finalmovie -f 1 
 
-#### make-mpeg Messages
+#### make_mpeg Messages
 
-If the number frames per second specified is negative or zero, *make-mpeg.py* will display a message like the one below and exit:
+If the number frames per second specified is negative or zero, *make_mpeg.py* will display a message like the one below and exit:
 
     frames per second must be greater than zero
 
-If *make-mpeg.py* is unable to open the first frame file, it will display a message like the one below and exit:
+If *make_mpeg.py* is unable to open the first frame file, it will display a message like the one below and exit:
 
     input file testmovie.001.png does not exist
 
@@ -242,7 +242,7 @@ If *make-mpeg.py* is unable to open the first frame file, it will display a mess
 
 #### delete-frame-set Usage Examples
 
-Delete all of the files associated with a stop action movie created by *stop-action-recorder.py* for a movie called *testmovie*.  Note *delete-frame-set.py* will not delete any files created by *make-mpeg*.  *delete-frame-set.py* will ask for confirmation to delete the files.
+Delete all of the files associated with a stop action movie created by *stop-action-recorder.py* for a movie called *testmovie*.  Note *delete-frame-set.py* will not delete any files created by *make_mpeg*.  *delete-frame-set.py* will ask for confirmation to delete the files.
 
     $ python delete-frame-set.py testmovie
 
@@ -393,7 +393,7 @@ Create a new temporary movie with the last frame repeated 100 times:
 
 Create a MP4 file with the movie:
 
-    $ python make-mpeg.py tempmovie2 testmovie -f 20
+    $ python make_mpeg.py tempmovie2 testmovie -f 20
 
 Delete the files associated with the two temporary files:
 
@@ -402,7 +402,7 @@ Delete the files associated with the two temporary files:
 
 ## Installation Instructions
 
-The *make-mpeg* python program uses *FFmpeg* to create the mp4 file. Instructions for installing *FFmpeg* can be found [here](https://ffmpeg.org/).
+The *make_mpeg* python program uses *FFmpeg* to create the mp4 file. Instructions for installing *FFmpeg* can be found [here](https://ffmpeg.org/).
 
 The *stop-action-movie-maker* python programs requires the the OpenCV for Python  library for Python 2 to be installed. Installing OpenCV on MacOS can be tricky, good instructions can be found [here](https://jjyap.wordpress.com/2014/05/24/installing-opencv-2-4-9-on-mac-osx-with-python-support/).
 
