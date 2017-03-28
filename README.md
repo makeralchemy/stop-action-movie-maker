@@ -183,13 +183,13 @@ If the movie has too few frames, the following message will be displayed and the
 
     $ python make_mpeg.py -h
 
-    usage: make_mpeg.py [-h] [-f FPS] [-s] [-b] inputfile outputfile
+    usage: make_mpeg.py [-h] [-f FPS] [-s] [-b] input_file output_file
 
     Stop action mpeg movie maker
 
     positional arguments:
-      inputfile            input file name
-      outputfile           output file name
+      input_file           input file name
+      output_file          output file name
 
     optional arguments:
       -h, --help           show this help message and exit
@@ -227,12 +227,12 @@ If *make_mpeg.py* is unable to open the first frame file, it will display a mess
 
     $ python delete_frame_set.py -h
 
-    usage: delete_frame_set.py [-h] [-x] [-d] targetmoviename
+    usage: delete_frame_set.py [-h] [-x] [-d] target_movie_name
 
     Delete frame set
 
     positional arguments:
-       targetmoviename       name of the stop action movie frame set to delete
+       target_movie_name    name of the stop action movie frame set to delete
 
     optional arguments:
       -h, --help            show this help message and exit
@@ -280,13 +280,13 @@ If a frame file associated with the stop action movie can not be found, a messag
     $ python repeat-first-frame.py -h
 
     usage: repeat-first-frame.py [-h] [-r FIRSTFRAMEREPEAT] [-d]
-                                 inputmoviename outputmoviename
+                                 input_movie_name output_movie_name
 
     Create frame set with repeated first frame
 
     positional arguments:
-      inputmoviename        file name of the input stop action movie
-      outputmoviename       file name of the output stop action movie
+      input_movie_name      file name of the input stop action movie
+      output_movie_name     file name of the output stop action movie
 
     optional arguments:
       -h, --help            show this help message and exit
