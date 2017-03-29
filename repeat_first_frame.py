@@ -2,7 +2,8 @@
 creates a new set of frame files and .count file with the first frame repeated
 the specified number of times
 """
-#pylint: disable=R0913
+
+# disable pylint too many locals messages
 #pylint: disable=R0914
 
 import argparse
@@ -133,7 +134,7 @@ def main():
                         help='file name of the input stop action movie')
     parser.add_argument('output_movie_name',
                         help='file name of the output stop action movie')
-    parser.add_argument('-r', '--firstFrameRepeat', dest='first_frame_repeat',
+    parser.add_argument('-r', '--firstframerepeat', dest='first_frame_repeat',
                         default=FIRST_FRAME_REPEAT, type=int,
                         help='number of times to repeat the first frame on playback')
     parser.add_argument('-d', '--debug', dest='debug_switch',
