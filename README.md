@@ -28,9 +28,9 @@ When the movie is played, the frame numbers and frames per second (fps) are disp
 
 ***delete_frame_set.py*** will delete all the files associated with a movie created by *stop-action-recorder.py*.
 
-***repeat-first-frame.py*** will add extra first frames to the beginning of the movie. This makes the first frame display longer when playing the movie with *stop-action-player.py* or when making a mp4 with *make_mpeg.py*.
+***repeat_first_frame.py*** will add extra first frames to the beginning of the movie. This makes the first frame display longer when playing the movie with *stop-action-player.py* or when making a mp4 with *make_mpeg.py*.
 
-***repeat-last-frame.py*** will add extra last frames to the end of the movie. This makes the last frame display longer when playing the movie with *stop-action-player.py* or when making a mp4 with *make_mpeg.py*.
+***repeat_last_frame.py*** will add extra last frames to the end of the movie. This makes the last frame display longer when playing the movie with *stop-action-player.py* or when making a mp4 with *make_mpeg.py*.
 
 The stop action movie recorder, player, and the mpeg maker are written for python 2.7.x.
 
@@ -273,13 +273,13 @@ If a frame file associated with the stop action movie can not be found, a messag
     testmovie.026.png does not exist
 
 
-### repeat-first-frame.py
+### repeat_first_frame.py
 
-#### repeat-first-frame Command Syntax
+#### repeat_first_frame Command Syntax
 
-    $ python repeat-first-frame.py -h
+    $ python repeat_first_frame.py -h
 
-    usage: repeat-first-frame.py [-h] [-r FIRSTFRAMEREPEAT] [-d]
+    usage: repeat_first_frame.py [-h] [-r FIRSTFRAMEREPEAT] [-d]
                                  input_movie_name output_movie_name
 
     Create frame set with repeated first frame
@@ -294,23 +294,23 @@ If a frame file associated with the stop action movie can not be found, a messag
                             number of times to repeat the first frame on playback
       -d, --debug           display debugging messages
 
-#### repeat-first-frame Usage Examples
+#### repeat_first_frame Usage Examples
 
 Create a new version of the stop action *testmovie* movie called *newmovie* with the first frame repeated 40 times (at 10 frames per second this would be 4 seconds, at 20 frames per second this we be 2 seconds). 
 
-    $ python repeat-first-frame.py testmovie newmovie -r 40
+    $ python repeat_first_frame.py testmovie newmovie -r 40
 
-#### repeat-first-frame Messages
+#### repeat_first_frame Messages
 
 If a frame file associated with the stop action movie can not be found, a message like the one below will be displayed and the execution will be stopped.  
 
     input frame file testmovie does not exist: processing stopping
 
-If the frame count file for the movie is not found, *repeat-first-frame.py* will display a message like the one below and exit:
+If the frame count file for the movie is not found, *repeat_first_frame.py* will display a message like the one below and exit:
 
     can not open input frame count file testmovie
 
-If the number of times to repeat the first frame is negative or zero, *repeat-first-frame.py* will display the following message and exit:
+If the number of times to repeat the first frame is negative or zero, *repeat_first_frame.py* will display the following message and exit:
 
     first frame repeat must be greater than zero
 
@@ -322,44 +322,44 @@ After all the new movie is created, a message like the following will be display
 
     new frame set newmovie with first frame repeated 20 times successfully created
 
-### repeat-last-frame.py
+### repeat_last_frame.py
 
-#### repeat-last-frame Command Syntax
+#### repeat_last_frame Command Syntax
 
-    $ python repeat-last-frame.py -h
+    $ python repeat_last_frame.py -h
 
-    usage: repeat-last-frame.py [-h] [-r LASTFRAMEREPEAT] [-d]
-                                inputmoviename outputmoviename
+    usage: repeat_last_frame.py [-h] [-r LAST_FRAME_REPEAT] [-d]
+                                input_movie_name output_movie_name
 
     Create frame set with the last frame repeated
 
     positional arguments:
-      inputmoviename        file name of the input stop action movie
-      outputmoviename       file name of the output stop action movie
+      input_movie_name      file name of the input stop action movie
+      output_movie_name     file name of the output stop action movie
 
     optional arguments:
       -h, --help            show this help message and exit
-      -r LASTFRAMEREPEAT, --lastframerepeat LASTFRAMEREPEAT
+      -r LAST_FRAME_REPEAT, --lastframerepeat LAST_FRAME_REPEAT
                             number of times to repeat the last frame
       -d, --debug           display debugging messages
 
-#### repeat-last-frame Usage Examples
+#### repeat_last_frame Usage Examples
 
 Create a new version of the stop action *testmovie* movie called *newmovie* with the last frame repeated 40 times (at 10 frames per second this would be 4 seconds, at 20 frames per second this we be 2 seconds). 
 
-    $ python repeat-last-frame.py testmovie newmovie -r 40
+    $ python repeat_last_frame.py testmovie newmovie -r 40
 
-#### repeat-last-frame Messages
+#### repeat_last_frame Messages
 
 If a frame file associated with the stop action movie can not be found, a message like the one below will be displayed and the execution will be stopped.  
 
     input frame file testmovie does not exist: processing stopping
 
-If the frame count file for the movie is not found, *repeat-last-frame.py* will display a message like the one below and exit:
+If the frame count file for the movie is not found, *repeat_last_frame.py* will display a message like the one below and exit:
 
     can not open input frame count file testmovie
 
-If the number of times to repeat the first frame is negative or zero, *repeat-last-frame.py* will display the following message and exit:
+If the number of times to repeat the first frame is negative or zero, *repeat_last_frame.py* will display the following message and exit:
 
     last frame repeat must be greater than zero
 
@@ -385,11 +385,11 @@ Preview the movie:
 
 Create a new temporary movie with the first frame repeated 20 times:
 
-    $ python repeat-first-frame.py testmovie tempmovie1 -r 20
+    $ python repeat_first_frame.py testmovie tempmovie1 -r 20
 
 Create a new temporary movie with the last frame repeated 100 times:
 
-    $ python repeat-last-frame.py tempmovie1 tempmovie2 -r 100
+    $ python repeat_last_frame.py tempmovie1 tempmovie2 -r 100
 
 Create a MP4 file with the movie:
 
