@@ -2,7 +2,7 @@
 
 ## Overview
 
-The stop action movie recorder and player are two command line python scripts for creating stop action movies.  As the name implies, *stop-action-recorder.py* is used to record the movie and *stop-action-player.py* is used to play the movie.
+The stop action movie recorder and player are two command line python scripts for creating stop action movies.  As the name implies, *stop-action-recorder.py* is used to record the movie and *stop_action_player.py* is used to play the movie.
 
 ***stop-action-recorder.py*** uses the specified webcam to record the movie. Upon start up, the program will capture an frame and display a live view of what is visible on the webcam. When the SPACE key is pressed, the frame will be saved.  That image will be shown as a faint image behind the live image for reference as the next frame is being prepared.
 
@@ -16,33 +16,33 @@ These keys have the following functions:
 
 The frames are stored as *.png* files with names in the form of *filename.nnn.png* where *filename* is the name provided to the command and *nnn* is the number of the frame.  For example: *testmovie.002.png*.
 
-An additional file named *filename.count* containing the number of frames in the movie is also created.  For example: *testmovie.count*. This file is used by *stop-action-player.py* to play the movie.
+An additional file named *filename.count* containing the number of frames in the movie is also created.  For example: *testmovie.count*. This file is used by *stop\_action\_player.py* to play the movie.
 
 The *frame* and *.count* files are stored in the current directory.
 
-***stop-action-player.py*** uses the files created by *stop-action-recorder.py* to play back the movie. The movie will be played until the <kbd>ESC</kbd> key is pressed. The time between frames can be specified on the command line; the default is 0.1 seconds.
+***stop\_action\_player.py*** uses the files created by *stop\_action\_recorder.py* to play back the movie. The movie will be played until the <kbd>ESC</kbd> key is pressed. The time between frames can be specified on the command line; the default is 0.1 seconds.
 
 When the movie is played, the frame numbers and frames per second (fps) are displayed in the upper left corner of the screen. The display of the frame numbers and fps  can be suppressed using the *-s* or *--suspressframetext* options on the command line. The frame numbers and fps can be toggled on and off by pressing the <kbd>f</kbd> key while the movie is playing.
 
-***make_mpeg.py*** uses the files created by *stop-action-recorder.py* to create a .mp4 video.
+***make\_mpeg.py*** uses the files created by *stop\_action\_recorder.py* to create a .mp4 video.
 
-***delete_frame_set.py*** will delete all the files associated with a movie created by *stop-action-recorder.py*.
+***delete\_frame\_set.py*** will delete all the files associated with a movie created by *stop\_action\_recorder.py*.
 
-***repeat_first_frame.py*** will add extra first frames to the beginning of the movie. This makes the first frame display longer when playing the movie with *stop-action-player.py* or when making a mp4 with *make_mpeg.py*.
+***repeat\_first\_frame.py*** will add extra first frames to the beginning of the movie. This makes the first frame display longer when playing the movie with *stop\_action\_player.py* or when making a mp4 with *make\_mpeg.py*.
 
-***repeat_last_frame.py*** will add extra last frames to the end of the movie. This makes the last frame display longer when playing the movie with *stop-action-player.py* or when making a mp4 with *make_mpeg.py*.
+***repeat\_last\_frame.py*** will add extra last frames to the end of the movie. This makes the last frame display longer when playing the movie with *stop\_action\_player.py* or when making a mp4 with *make\_mpeg.py*.
 
 The stop action movie recorder, player, and the mpeg maker are written for python 2.7.x.
 
 ## Usage Instructions
 
-### stop-action-recorder.py
+### stop\_action\_recorder.py
 
 #### Recorder Command Syntax
 
-    $ stop-action-recorder.py -h
+    $ stop_action_recorder.py -h
 
-    usage: stop-action-recorder.py [-h] [-d] [-g] [-s GRIDSPACING]
+    usage: stop_action_recorder.py [-h] [-d] [-g] [-s GRIDSPACING]
                                    [-w WEBCAMNUMBER] [-r] [-a ALPHAVALUE]
                                    movie_name
 
@@ -69,48 +69,48 @@ The stop action movie recorder, player, and the mpeg maker are written for pytho
 #### Recorder Usage Examples
 Record a movie using webcam 0 and store the frames in files with the name *testmovie*.
 
-    $ python stop-action-recorder.py testmovie
+    $ python stop_action_recorder.py testmovie
 
 Record a movie using webcam 1 and store the frames in files with the name *testmovie*.
 
-    $ python stop-action-recorder.py testmovie -w 1
+    $ python stop_action_recorder.py testmovie -w 1
 
 Record a movie using webcam 0, display grid lines and space them 25 pixels apart. Note: display of grid lines can be turned on or off from the keyboard by pressing the <kbd>g</kbd> key.
 
-    $ python stop-action-recorder.py testmovie -g -s 25
+    $ python stop_action_recorder.py testmovie -g -s 25
 
 Record a movie using webcam 0 and store the frames in files with the name *testmovie*. When displaying the images make the live frames fainter than and the previous frame.
 
-    $ python stop-action-recorder.py testmovie -r
+    $ python stop_action_recorder.py testmovie -r
 
 Record a movie using webcam 0 and store the frames in files with the name *testmovie* using an alpha value of 0.50 for the background image.
 
-    $ python stop-action-recorder.py testmovie -a 0.50
+    $ python stop_action_recorder.py testmovie -a 0.50
 
 Record a movie using webcam 0 and store the frames in files with the name *testmovie*. When displaying the images make the live frames fainter than and the previous frame and an alpha value of 0.50
 
-    $ python stop-action-recorder.py testmovie -r -a 0.50
+    $ python stop_action_recorder.py testmovie -r -a 0.50
 
 #### Recorder Messages
-If *stop-action-recorder.py* is unable to open the webcam, it will display the message:
+If *stop\_action\_recorder.py* is unable to open the webcam, it will display the message:
 
     cannot open webcam    
 
-If *stop-action-recorder.py* is unable to capture the initial frame, it will display the following message and exit.
+If *stop\_action\_recorder.py* is unable to capture the initial frame, it will display the following message and exit.
 
     unable to read initial webcam image
 
-If *stop-action-recorder.py* is unable to capture a subsequent frame, it will display the following message and exit.
+If *stop\_action\_recorder.py* is unable to capture a subsequent frame, it will display the following message and exit.
 
     unable to read webcam image in loop
 
-### stop-action-player.py
+### stop\_action\_player.py
 
 #### Player Command Syntax
 
-    $ python stop-action-player.py -h
+    $ python stop_action_player.py -h
 
-    usage: stop-action-player.py [-h] [-f FRAMESPERSECOND] [-s] [-d] [-b]
+    usage: stop_action_player.py [-h] [-f FRAMESPERSECOND] [-s] [-d] [-b]
                                  [-a FIRSTFRAMEREPEAT] [-z LASTFRAMEREPEAT]
                                  moviename
 
@@ -137,35 +137,35 @@ If *stop-action-recorder.py* is unable to capture a subsequent frame, it will di
 
 Play a movie named *testmovie* using the default of tens frames per second.
 
-    $ python stop-action-player.py testmovie
+    $ python stop_action_player.py testmovie
 
 Play a movie named *testmovie* using the default of tens frames per second and play it backwards (frames played in the opposite order that it was recorded).
 
-    $ python stop-action-player.py testmovie -b
+    $ python stop_action_player.py testmovie -b
 
 Play a movie named *testmovie* using the default of ten frames per second and play frame 001 ten times (this allows the first frame to be visible longer which is good for the beginning or end of the movie if -b is also specified. 
 
-    $ python stop-action-player.py testmovie -a 10
+    $ python stop_action_player.py testmovie -a 10
 
 Play a movie named *testmovie* using the default of ten frames per second and play the last frame twenty times (this allows the first frame to be visible longer which is good for the beginning or end of the movie if -b is also specified. 
 
-    $ python stop-action-player.py testmovie -z 20
+    $ python stop_action_player.py testmovie -z 20
 
 Play a movie named *testmovie* at 20 frames per second.
 
-    $ python stop-action-player.py testmovie -f 20
+    $ python stop_action_player.py testmovie -f 20
 
 Play a movie named *testmovie* and suppress the display of the frame numbers. Note: the display of frame numbers can be toggled on and off by pressing the <kbd>f</kbd> key while the movie is playing.
 
-    $ python stop-action-player.py testmovie -s
+    $ python stop_action_player.py testmovie -s
 
 #### Player Messages
 
-If *stop-action-player.py* is unable to open the frame count file, it will display a message like the one below and exit:
+If *stop\_action\_player.py* is unable to open the frame count file, it will display a message like the one below and exit:
 
     can not open frame count file testmovie.count
 
-If *stop-action-player.py* is unable to open one of the frame files, it will display a message like the one below and exit:
+If *stop\_action\_player.py* is unable to open one of the frame files, it will display a message like the one below and exit:
 
     frame file testmovie.001.png does not exist
 
@@ -177,9 +177,9 @@ If the movie has too few frames, the following message will be displayed and the
 
     movie must contain at least two frames
 
-### make_mpeg.py
+### make\_mpeg.py
 
-#### make_mpeg Command Syntax
+#### make\_mpeg Command Syntax
 
     $ python make_mpeg.py -h
 
@@ -197,33 +197,33 @@ If the movie has too few frames, the following message will be displayed and the
       -s, --silent         if specified, do not display messages
       -b, --playbackwards  create the movie to play backwards
 
-#### make_mpeg Usage Examples
+#### make\_mpeg Usage Examples
 
-Make a .mp4 movie from the *testmovie* frames created by *stop-action-recorder.py*, default two frames per second, and save the resulting movie as *finalmovie.mp4*:
+Make a .mp4 movie from the *testmovie* frames created by *stop\_action\_recorder.py*, default two frames per second, and save the resulting movie as *finalmovie.mp4*:
 
     $ python make_mpeg.py testmovie finalmovie
 
-Make a .mp4 movie from the *testmovie* frames created by *stop-action-recorder.py*, default two frames per second, make it play backwards (frames in the opposite order that they were recorded), and save the resulting movie as *finalmovie.mp4*:
+Make a .mp4 movie from the *testmovie* frames created by *stop\_action\_recorder.py*, default two frames per second, make it play backwards (frames in the opposite order that they were recorded), and save the resulting movie as *finalmovie.mp4*:
 
     $ python make_mpeg.py testmovie finalmovie -b
 
-Make a .mp4 movie from the *testmovie* frames created by *stop-action-recorder.py*, one frame per second, and save the resulting movie as *finalmovie.mp4*:
+Make a .mp4 movie from the *testmovie* frames created by *stop\_action\_recorder.py*, one frame per second, and save the resulting movie as *finalmovie.mp4*:
 
     $ python make_mpeg.py testmovie finalmovie -f 1 
 
-#### make_mpeg Messages
+#### make\_mpeg Messages
 
-If the number frames per second specified is negative or zero, *make_mpeg.py* will display a message like the one below and exit:
+If the number frames per second specified is negative or zero, *make\_mpeg.py* will display a message like the one below and exit:
 
     frames per second must be greater than zero
 
-If *make_mpeg.py* is unable to open the first frame file, it will display a message like the one below and exit:
+If *make\_mpeg.py* is unable to open the first frame file, it will display a message like the one below and exit:
 
     input file testmovie.001.png does not exist
 
-### delete_frame_set.py
+### delete\_frame\_set.py
 
-#### delete_frame_set Command Syntax
+#### delete\_frame\_set Command Syntax
 
     $ python delete_frame_set.py -h
 
@@ -240,19 +240,19 @@ If *make_mpeg.py* is unable to open the first frame file, it will display a mess
                             delete without asking for confirmation
       -d, --debug           display debugging messages
 
-#### delete_frame_set Usage Examples
+#### delete\_frame\_set Usage Examples
 
-Delete all of the files associated with a stop action movie created by *stop-action-recorder.py* for a movie called *testmovie*.  Note *delete_frame_set.py* will not delete any files created by *make_mpeg*.  *delete_frame_set.py* will ask for confirmation to delete the files.
+Delete all of the files associated with a stop action movie created by *stop\_action\_recorder.py* for a movie called *testmovie*.  Note *delete\_frame\_set.py* will not delete any files created by *make\_mpeg*.  *delete\_frame\_set.py* will ask for confirmation to delete the files.
 
     $ python delete_frame_set.py testmovie
 
-Delete all of the files associated with a stop action movie created by *stop-action-recorder.py* for a movie called *testmovie*.  A command argument is used with *delete_frame_set.py* to not ask for confirmation to delete the files.  Use the '-x' or '--deletewithoutconfirmation' arguments with caution.
+Delete all of the files associated with a stop action movie created by *stop\_action\_recorder.py* for a movie called *testmovie*.  A command argument is used with *delete\_frame\_set.py* to not ask for confirmation to delete the files.  Use the '-x' or '--deletewithoutconfirmation' arguments with caution.
 
     $ python delete_frame_set.py testmovie -x
 
-#### delete_frame_set Messages
+#### delete\_frame\_set Messages
 
-*delete_frame_set.py* will ask for confirmation to delete the files associated with the movie using a message that looks like this:
+*delete\_frame\_set.py* will ask for confirmation to delete the files associated with the movie using a message that looks like this:
 
     delete frame files for testmovie? Type YES to confirm: 
 
@@ -264,7 +264,7 @@ If *YES* was typed or the *-x* or *--deletewithoutconfirmation* command line arg
 
     frame set testmovie deleted 
 
-If the frame count file for the movie is not found, *delete_frame_set.py* will display a message like the one below and exit:
+If the frame count file for the movie is not found, *delete\_frame\_set.py* will display a message like the one below and exit:
 
     can not open target frame count file testmovie
 
@@ -273,9 +273,9 @@ If a frame file associated with the stop action movie can not be found, a messag
     testmovie.026.png does not exist
 
 
-### repeat_first_frame.py
+### repeat\_first\_frame.py
 
-#### repeat_first_frame Command Syntax
+#### repeat\_first\_frame Command Syntax
 
     $ python repeat_first_frame.py -h
 
@@ -294,23 +294,23 @@ If a frame file associated with the stop action movie can not be found, a messag
                             number of times to repeat the first frame on playback
       -d, --debug           display debugging messages
 
-#### repeat_first_frame Usage Examples
+#### repeat\_first\_frame Usage Examples
 
 Create a new version of the stop action *testmovie* movie called *newmovie* with the first frame repeated 40 times (at 10 frames per second this would be 4 seconds, at 20 frames per second this we be 2 seconds). 
 
     $ python repeat_first_frame.py testmovie newmovie -r 40
 
-#### repeat_first_frame Messages
+#### repeat\_first\_frame Messages
 
 If a frame file associated with the stop action movie can not be found, a message like the one below will be displayed and the execution will be stopped.  
 
     input frame file testmovie does not exist: processing stopping
 
-If the frame count file for the movie is not found, *repeat_first_frame.py* will display a message like the one below and exit:
+If the frame count file for the movie is not found, *repeat\_first\_frame.py* will display a message like the one below and exit:
 
     can not open input frame count file testmovie
 
-If the number of times to repeat the first frame is negative or zero, *repeat_first_frame.py* will display the following message and exit:
+If the number of times to repeat the first frame is negative or zero, *repeat\_first\_frame.py* will display the following message and exit:
 
     first frame repeat must be greater than zero
 
@@ -322,9 +322,9 @@ After all the new movie is created, a message like the following will be display
 
     new frame set newmovie with first frame repeated 20 times successfully created
 
-### repeat_last_frame.py
+### repeat\_last\_frame.py
 
-#### repeat_last_frame Command Syntax
+#### repeat\_last\_frame Command Syntax
 
     $ python repeat_last_frame.py -h
 
@@ -343,23 +343,23 @@ After all the new movie is created, a message like the following will be display
                             number of times to repeat the last frame
       -d, --debug           display debugging messages
 
-#### repeat_last_frame Usage Examples
+#### repeat\_last\_frame Usage Examples
 
 Create a new version of the stop action *testmovie* movie called *newmovie* with the last frame repeated 40 times (at 10 frames per second this would be 4 seconds, at 20 frames per second this we be 2 seconds). 
 
     $ python repeat_last_frame.py testmovie newmovie -r 40
 
-#### repeat_last_frame Messages
+#### repeat\_last\_frame Messages
 
 If a frame file associated with the stop action movie can not be found, a message like the one below will be displayed and the execution will be stopped.  
 
     input frame file testmovie does not exist: processing stopping
 
-If the frame count file for the movie is not found, *repeat_last_frame.py* will display a message like the one below and exit:
+If the frame count file for the movie is not found, *repeat\_last\_frame.py* will display a message like the one below and exit:
 
     can not open input frame count file testmovie
 
-If the number of times to repeat the first frame is negative or zero, *repeat_last_frame.py* will display the following message and exit:
+If the number of times to repeat the first frame is negative or zero, *repeat\_last\_frame.py* will display the following message and exit:
 
     last frame repeat must be greater than zero
 
@@ -381,7 +381,7 @@ Record the movie:
 
 Preview the movie:
 
-    $ python stop-action-player.py testmovie -t XXX -a 20 -z 100
+    $ python stop_action_player.py testmovie -t XXX -a 20 -z 100
 
 Create a new temporary movie with the first frame repeated 20 times:
 
@@ -402,7 +402,7 @@ Delete the files associated with the two temporary files:
 
 ## Installation Instructions
 
-The *make_mpeg* python program uses *FFmpeg* to create the mp4 file. Instructions for installing *FFmpeg* can be found [here](https://ffmpeg.org/).
+The *make\_mpeg* python program uses *FFmpeg* to create the mp4 file. Instructions for installing *FFmpeg* can be found [here](https://ffmpeg.org/).
 
 The *stop-action-movie-maker* python programs requires the the OpenCV for Python  library for Python 2 to be installed. Installing OpenCV on MacOS can be tricky, good instructions can be found [here](https://jjyap.wordpress.com/2014/05/24/installing-opencv-2-4-9-on-mac-osx-with-python-support/).
 
@@ -414,7 +414,7 @@ Install the *stop-action-movie-maker* files by cloning this repository with this
 
 Make your first stop action movie with the command:
 
-    $ python stop-action-recorder.py testmovie
+    $ python stop_action_recorder.py testmovie
 
 ## License
 This project is licensed under the MIT license.
