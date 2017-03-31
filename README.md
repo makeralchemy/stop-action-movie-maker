@@ -2,9 +2,9 @@
 
 ## Overview
 
-The stop action movie recorder and player are two command line python scripts for creating stop action movies.  As the name implies, *stop-action-recorder.py* is used to record the movie and *stop_action_player.py* is used to play the movie.
+The stop action movie recorder and player are two command line python scripts for creating stop action movies.  As the name implies, *stop\_action\_recorder.py* is used to record the movie and *stop_action_player.py* is used to play the movie.
 
-***stop-action-recorder.py*** uses the specified webcam to record the movie. Upon start up, the program will capture an frame and display a live view of what is visible on the webcam. When the SPACE key is pressed, the frame will be saved.  That image will be shown as a faint image behind the live image for reference as the next frame is being prepared.
+***stop\_action\_recorder.py*** uses the specified webcam to record the movie. Upon start up, the program will capture an frame and display a live view of what is visible on the webcam. When the SPACE key is pressed, the frame will be saved.  That image will be shown as a faint image behind the live image for reference as the next frame is being prepared.
 
 These keys have the following functions:
 
