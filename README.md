@@ -44,12 +44,12 @@ The stop action movie recorder, player, and the mpeg maker are written for pytho
 
     usage: stop-action-recorder.py [-h] [-d] [-g] [-s GRIDSPACING]
                                    [-w WEBCAMNUMBER] [-r] [-a ALPHAVALUE]
-                                   moviename
+                                   movie_name
 
     Stop action movie recorder
 
     positional arguments:
-      moviename             file name of the stop action movie
+      movie_name            file name of the stop action movie
 
     optional arguments:
       -h, --help            show this help message and exit
