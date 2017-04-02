@@ -1,7 +1,6 @@
 #! /usr/bin/env python
-"""
-makes a movie from a set of frames (.png files)
-"""
+# make_mpeg.py
+""" makes a movie from a set of frames (.png files) """
 
 # written for python 2.7.x
 

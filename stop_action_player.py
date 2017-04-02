@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+# stop_action_player.py
 """ plays stop action movies created by stop_action_player """
 
 # disable pylint too many locals messages

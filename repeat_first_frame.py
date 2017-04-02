@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+# repeat_first_frame.py
 """
 creates a new set of frame files and .count file with the first frame repeated
 the specified number of times

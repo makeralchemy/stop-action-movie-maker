@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+# stop_action_recorder.py
 """ stop action movie recorder """
 
 # disable pylint too many locals messages

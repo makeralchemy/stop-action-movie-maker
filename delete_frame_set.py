@@ -1,7 +1,6 @@
 #!/usr/bin/env python
-"""
-deletes the frame files associated with a stop action movie
-"""
+# delete_frame_set.py
+""" deletes the frame files associated with a stop action movie """
 
 import argparse
 import os
