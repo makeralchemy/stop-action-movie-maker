@@ -112,12 +112,12 @@ If *stop\_action\_recorder.py* is unable to capture a subsequent frame, it will 
 
     usage: stop_action_player.py [-h] [-f FRAMESPERSECOND] [-s] [-d] [-b]
                                  [-a FIRSTFRAMEREPEAT] [-z LASTFRAMEREPEAT]
-                                 moviename
+                                 movie_name
 
     Stop action movie player
 
     positional arguments:
-      moviename             file name of the stop action movie
+      movie_name            file name of the stop action movie
 
     optional arguments:
       -h, --help            show this help message and exit
